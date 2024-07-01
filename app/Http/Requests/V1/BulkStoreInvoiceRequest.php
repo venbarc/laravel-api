@@ -26,7 +26,7 @@ class BulkStoreInvoiceRequest extends FormRequest
             '*.customerId' => ['required', 'integer'],
             '*.amount' => ['required', 'numeric'],
             '*.status' => ['required', Rule::in(['B', 'P', 'V', 'b', 'p', 'v'])],
-            '*.billDate' => ['required', 'date_format:Y-m-d H:i:s'],
+            '*.billedDate' => ['required', 'date_format:Y-m-d H:i:s'],
             '*.paidDate' => ['date_format:Y-m-d H:i:s', 'nullable'],
         ];
     }
@@ -35,7 +35,7 @@ class BulkStoreInvoiceRequest extends FormRequest
 
         foreach($this->toArray() as $obj){
             $obj['customer_id'] = $obj['customerId'] ?? null;
-            $obj['bill_date'] = $obj['billDate'] ?? null;
+            $obj['billed_date'] = $obj['billedDate'] ?? null;
             $obj['paid_date'] = $obj['paidDate'] ?? null;
 
             $data[] = $obj;
